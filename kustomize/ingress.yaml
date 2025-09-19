@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: resimojavnozdravstvo
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - resimojavnozdravstvo.danesjenovdan.si
+        - resimojavnozdravstvo.djnd.si
+      secretName: resimojavnozdravstvo-tls
+  rules:
+    - host: resimojavnozdravstvo.danesjenovdan.si
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: resimojavnozdravstvo
+                port:
+                  number: 80
+    - host: resimojavnozdravstvo.djnd.si
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: resimojavnozdravstvo
+                port:
+                  number: 80

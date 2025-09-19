@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resimojavnozdravstvo
+  labels:
+    app: resimojavnozdravstvo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resimojavnozdravstvo
+  template:
+    metadata:
+      labels:
+        app: resimojavnozdravstvo
+    spec:
+      containers:
+        - name: resimojavnozdravstvo
+          image: resimojavnozdravstvo
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: 25Mi
+              cpu: 25m
+            limits:
+              memory: 25Mi
+              cpu: 25m
