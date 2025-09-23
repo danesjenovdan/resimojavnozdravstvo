@@ -32,3 +32,28 @@ spec:
                 name: resimojavnozdravstvo
                 port:
                   number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: resimojavnozdravstvo-redirect
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    nginx.ingress.kubernetes.io/permanent-redirect: https://resimojavnozdravstvo.danesjenovdan.si
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - resimojavnozdravstvo.si
+      secretName: resimojavnozdravstvo-redirect-tls
+  rules:
+    - host: resimojavnozdravstvo.si
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: resimojavnozdravstvo
+                port:
+                  number: 80
