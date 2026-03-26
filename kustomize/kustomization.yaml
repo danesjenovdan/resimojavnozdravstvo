@@ -8,4 +8,4 @@ resources:
 images:
   - name: resimojavnozdravstvo
     newName: rg.fr-par.scw.cloud/djnd/resimojavnozdravstvo
-    newTag: 'f0146db11e505e887fcf965aab47bdaaf922920d'
+    newTag: '01bf0da417b2aa2cfdb7da1490458f4a086b328c'
